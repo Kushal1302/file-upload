@@ -11,7 +11,7 @@ function App() {
 
     const fetchFiles = async () => {
         try {
-            const response = await axios.get('http://localhost:9000/files');
+            const response = await axios.get('https://file-upload-6bls.onrender.com/files');
             setFiles(response.data);
             console.log(response.data)
         } catch (error) {
@@ -24,7 +24,7 @@ function App() {
         const data = new FormData();
         data.append("photos", e.target.files[0]);
         try {
-            const response = await axios.post('http://localhost:9000/file', data, {
+            const response = await axios.post('https://file-upload-6bls.onrender.com/file', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -38,7 +38,7 @@ function App() {
         }
     }
     const handleDelete = async (id) => {
-      const res = await axios.delete(`http://localhost:9000/delete?id=${id}`)
+      const res = await axios.delete(`https://file-upload-6bls.onrender.com/delete?id=${id}`)
       fetchFiles()
     } 
 
@@ -52,7 +52,7 @@ function App() {
             <div>
                 {files.map(file => (
                     <div key={file._id} style={{display:'flex' , padding:2 , justifyContent:'space-between'}}>
-                        <img src={`http://localhost:9000/uploads/${file.filename}`} alt={file.filename} />
+                        <img src={`https://file-upload-6bls.onrender.com/uploads/${file.filename}`} alt={file.filename} />
                         <p style={{cursor:'pointer'}} onClick={() => handleDelete(file.filename)}>delete</p>
                     </div>
                 ))}
